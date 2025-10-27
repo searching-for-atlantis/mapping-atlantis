@@ -8,7 +8,7 @@ The challenge is outlined below:
 - Create a web page that displays a map of that location (set the zoom level so that the majority of the location fills the map on load).
 - The web page should have some sort of title of the project and brief description of the focus/theme/narrative.
 - Map should be on the landing page (as opposed to on a secondary page).
-- Landing/map page should have an onLoad pop up (like [this](https://msu-anthropology.github.io/daea/) or [this] (https://mappingmv.matrix.msu.edu/)) that provides a brief intro to the project. There are tutorials on how to do onLoad Javascript pop ups all over the web. Have a look at the code from the Mapping Morton Village project on Github to see how they did it.
+- Landing/map page should have an onLoad pop up (like [this](https://msu-anthropology.github.io/daea/) or [this](https://mappingmv.matrix.msu.edu/)) that provides a brief intro to the project. There are tutorials on how to do onLoad Javascript pop ups all over the web. Have a look at the code from the Mapping Morton Village project on Github to see how they did it.
 - Map should take up the entire browser window (regardless of how large or small the browser window is), edge to edge (no margin)
 - Choose at least 15 places of memory for that location (your choice as to type, time period, etc…but they all have to fit into your narrative)…more is fine
 - On the map, each of the places of memory should have a marker. The marker should be a custom marker, not the stock marker for that framework. Make sure that the custom markers scale (so they aren't super tiny when you are zoomed out) and work well (visually distinct, high contrast, etc) with the basemap you've chosen.

@@ -20,7 +20,8 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-
+var marker = L.marker([55.861717, -4.2417]).addTo(map);
+marker.bindPopup("<b><center>Strathclyde University</center></b>I'm a great place :).");
   </script>
 
 </body>

@@ -2,6 +2,9 @@
 This repository is part of the Cultural Heritage Informatics Rapid Development Mapping Memory Challenge 2025.
 
 ## About the project
+Under construction...
+
+## About the challenge
 This project is built with HTML (Hypertext Markup Language), CSS (Cascading Style Sheets) and JavaScript, primarily with the Leaflet JS Library for mapping. 
 The challenge is outlined below:
 - Develop a narrative that binds your locations together (or choose locations that fit into your narrative). Theme can be cultural, historical, (or para-historical…think The Canterbury Tales), literary, scientific (think John Snow and the Broad Street Cholera Epidemic). Think about this as if it were a real project, as opposed to a tech experiment.

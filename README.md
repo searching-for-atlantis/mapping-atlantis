@@ -2,7 +2,7 @@
 This repository is part of the Cultural Heritage Informatics Rapid Development Mapping Memory Challenge 2025.
 
 ## About the project
-Under construction...
+The map explores and plots the different points of latitude and longitude proposed for the "lost" city of Atlantis. Points of interest range from the Mediterranean to the North Pole to the Greek Aegean Sea to the Azore Islands. Many anthropologists and archaeologists have wrestled with the location of Atlantis over the years to the point where it has become a popular topic in pseudoarchaeology.
 
 ## About the challenge
 This project is built with HTML (Hypertext Markup Language), CSS (Cascading Style Sheets) and JavaScript, primarily with the Leaflet JS Library for mapping. 

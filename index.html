@@ -86,6 +86,12 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+        var iconOptions = {
+            iconUrl: "assets/assets/icons8-plato-the-philosopher-64.png", // Updated for custom icon
+            iconSize: [55, 55]
+        };
+        var customIcon = L.icon(iconOptions);
+        var markerOptions = { icon: customIcon };
 var marker = L.marker([55.861717, -4.2417]).addTo(map);
 marker.bindPopup("<b><center>Strathclyde University</center></b>I'm a great place :).");
   </script>

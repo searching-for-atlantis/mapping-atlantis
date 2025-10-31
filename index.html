@@ -21,7 +21,14 @@
     #map {
         margin: auto;
         height:100%;
-    }                                                                                                                                                                                                            
+    }
+    /* Center the modal */
+    .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    }                                                                                                                                                                                                           
 </style>
 
 </head>
@@ -49,11 +56,35 @@
 <div id="map"></div>
                 <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Gillian MacDonald & Madeline Mackie, 2025</p></div>
         </footer>
+        <!-- Modal -->
+      <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-dialog modal-vertical-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Welcome to the Digital Atlas of Egyptian Archaeology - Fall 2018</h4>
+                    </div>
+                    <div class="modal-body">
+                        Searching for Atlantis is a digital cultural map of archaeological sites across the world associated with the lost city (ranging from the Ancient to the modern). The map was collaboratively produced by Madeline Mackie and Gillian MacDonald at Michigan State University in the Fall 2025 semester during the Computational Cultural Heritage Fellowship, Searching for Atlantis is an experiment in applied digital archaeology mapping.
+                    </div>
+                    <div class="modal-footer">
+                        <label ><input class="dont" type="checkbox" name="dismiss"> Don't show again</label><br />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show(); // Show the modal when the page loads
+    });
 var map = L.map('map').setView([55.860916,-4.251433], 12);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { 
     maxZoom: 19,

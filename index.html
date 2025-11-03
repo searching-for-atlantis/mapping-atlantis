@@ -66,12 +66,6 @@
             </div>
         </header>
         <div id="map"></div>
-            <div id="slider-container">
-             <div id="time-slider"></div>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Gillian MacDonald & Madeline Mackie, 2025</p></div>
-        </footer>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -94,7 +88,7 @@
     var myModal = new bootstrap.Modal(document.getElementById('myModal'));
     myModal.show(); // Show the modal when the page loads
     });
-var map = L.map('map').setView([26.455343409890208, -38.99551264526797], 3);
+var map = L.map('map').setView([26.455343409890208, -38.99551264526797], 3.5);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { 
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -113,6 +107,9 @@ marker.bindPopup("<b><center>Strathclyde University</center></b>I'm a great plac
 var marker = L.marker([36.40602029163723, 25.38904201859997], markerOptions).addTo(map);
 marker.bindPopup("<b><center>Thera Eruption</center></b> According to Spyridon Marinatos, who discovered the site, the Thera eruption is a reflection of Plato's story of Atlantis. This is a view mostly upheld by popular TV not by scholarship.")
   </script>
-
+  <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Gillian MacDonald & Madeline Mackie, 2025</p></div>
+        </footer>
 </body>
 </html>

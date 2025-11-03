@@ -1,108 +1,258 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-                <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!--jquery js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!--jQuery UI files-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--jQuery UI Touch js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <!--bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!--leaflet-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-        <!-- Time Slider -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <title>Searching for Atlantis</title>
 
     <style type="text/css">
     html, body { 
-        height:100%
+        height:100%;
+        margin: 0;
+        padding: 0;
     }
     #map {
         margin: auto;
-        height:100%;
+        height: calc(100% - 17rem - 80px); /* Subtract header and footer heights */
     }
-    /* Center the modal */
     .modal-dialog {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    }                                                                                                                                                                                                        
-</style>
-
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    
+    /* Time slider styles */
+    #time-slider-container {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        z-index: 1000;
+        min-width: 300px;
+    }
+    
+    #time-display {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    
+    #time-slider {
+        width: 100%;
+    }
+    
+    .ui-slider {
+        height: 8px;
+        background: #ddd;
+        border: none;
+        border-radius: 4px;
+    }
+    
+    .ui-slider-handle {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #084844;
+        border: 2px solid white;
+        cursor: pointer;
+        top: -6px;
+    }
+    
+    .ui-slider-range {
+        background: #084844;
+    }
+    </style>
 </head>
 <body>
-  <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">Searching for Atlantis</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Searching for Atlantis</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
             </div>
-        </nav>
-<header class="py-1" style="background-color: #084844; height:17rem"> 
-            <div class="text-center my-5">
-                <img class="img-fluid rounded-circle mb-4" src="assets/atlantis-1.png" alt="canva generated image of underwater arches" style="max-width: 100px; margin: 0px" />
-                <h2 class="text-white fs-3 fw-bolder">Searching for Atlantis: Sites Around the World</h2>
-                <p class="text-white-50 mb-0">An interactive map showing the many archaeological sites associated with the lost city of Atlantis.</p>
-            </div>
-        </header>
-        <div id="map"></div>
-         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Gillian MacDonald & Madeline Mackie, 2025</p></div>
-        </footer>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="ModalLabel">Searching for Atlantis: Sites Around the World</h5>
         </div>
-            <div class="modal-body">
-                <p class="small">Searching for Atlantis is a digital cultural map of archaeological sites across the world associated with the lost city (ranging from the Ancient to the modern). The map was collaboratively produced by Madeline Mackie and Gillian MacDonald at Michigan State University in the Fall 2025 semester during the Computational Cultural Heritage Fellowship, Searching for Atlantis is an experiment in applied digital archaeology mapping.</p>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-         </div>
+    </nav>
+    <header class="py-1" style="background-color: #084844; height:17rem"> 
+        <div class="text-center my-5">
+            <img class="img-fluid rounded-circle mb-4" src="assets/atlantis-1.png" alt="canva generated image of underwater arches" style="max-width: 100px; margin: 0px" />
+            <h2 class="text-white fs-3 fw-bolder">Searching for Atlantis: Sites Around the World</h2>
+            <p class="text-white-50 mb-0">An interactive map showing the many archaeological sites associated with the lost city of Atlantis.</p>
+        </div>
+    </header>
+    <div id="map">
+        <div id="time-slider-container">
+            <div id="time-display">1992/01</div>
+            <div id="time-slider"></div>
         </div>
     </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-    myModal.show(); // Show the modal when the page loads
-    });
-var map = L.map('map').setView([41.19892230836983, 4.249249154140825], 3.5);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { 
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Gillian MacDonald & Madeline Mackie, 2025</p></div>
+    </footer>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Searching for Atlantis: Sites Around the World</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="small">Searching for Atlantis is a digital cultural map of archaeological sites across the world associated with the lost city (ranging from the Ancient to the modern). The map was collaboratively produced by Madeline Mackie and Gillian MacDonald at Michigan State University in the Fall 2025 semester during the Computational Cultural Heritage Fellowship, Searching for Atlantis is an experiment in applied digital archaeology mapping.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-var iconOptions = {
-    iconUrl: "assets/plato-color.png", // Updated for custom icon
-    iconSize: [55, 55]
-};
-var customIcon = L.icon(iconOptions);
-var markerOptions = { icon: customIcon };
+    <script>
+        var map, markerGroup, allMarkers = [];
+        
+        $(document).ready(function() {
+            // Show modal
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+            myModal.show();
 
-var marker = L.marker([55.861717, -4.2417], markerOptions).addTo(map);
-marker.bindPopup("<b><center>Strathclyde University</center></b>I'm a great place :).");
+            // Initialize map
+            map = L.map('map').setView([41.19892230836983, 4.249249154140825], 3.5);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
 
-var marker = L.marker([36.40602029163723, 25.38904201859997], markerOptions).addTo(map);
-marker.bindPopup("<b><center>Thera Eruption</center></b> According to Spyridon Marinatos, who discovered the site, the Thera eruption is a reflection of Plato's story of Atlantis. This is a view mostly upheld by popular TV not by scholarship.")
-  </script>
+            // Create custom icon
+            var customIcon = L.icon({
+                iconUrl: "assets/plato-color.png",
+                iconSize: [55, 55],
+                iconAnchor: [27, 55],
+                popupAnchor: [0, -55]
+            });
+
+            var dataset1 = [
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-119.0977191, 46.2465524]
+                    },
+                    properties: {
+                        title: 'Popup 1',
+                        description: 'Hello World!',
+                        time: '1992/01',
+                        timeValue: 199201
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-119.201977, 46.257038]
+                    },
+                    properties: {
+                        title: 'Popup 2',
+                        description: 'Hello again, World!',
+                        time: '1992/07',
+                        timeValue: 199207
+                    }
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-119.1080419, 46.2309332]
+                    },
+                    properties: {
+                        title: 'Popup 3',
+                        description: 'Hello once again, World!',
+                        time: '1992/06',
+                        timeValue: 199206
+                    }
+                }
+            ];
+
+            // Sort dataset by time
+            dataset1.sort(function(a, b) {
+                return a.properties.timeValue - b.properties.timeValue;
+            });
+
+            markerGroup = L.layerGroup().addTo(map);
+
+            // Create markers with custom icon
+            dataset1.forEach(function(feature) {
+                var coords = feature.geometry.coordinates;
+                var marker = L.marker([coords[1], coords[0]], {icon: customIcon});
+                
+                var content = "<div style='clear: both'></div><div><h4>" + feature.properties.title + "</h4><p>" + feature.properties.time + "</p><p>" + feature.properties.description + "</p></div>";
+                marker.bindPopup(content, {closeButton: true});
+                
+                allMarkers.push({
+                    marker: marker,
+                    time: feature.properties.time,
+                    timeValue: feature.properties.timeValue
+                });
+            });
+
+            // Initialize jQuery UI slider
+            $("#time-slider").slider({
+                min: 0,
+                max: allMarkers.length - 1,
+                value: 0,
+                step: 1,
+                range: "min",
+                slide: function(event, ui) {
+                    updateMap(ui.value);
+                },
+                change: function(event, ui) {
+                    updateMap(ui.value);
+                }
+            });
+            
+            // Show initial state
+            updateMap(0);
+        });
+
+        function updateMap(index) {
+            // Clear all markers
+            markerGroup.clearLayers();
+            
+            // Add markers up to current index
+            for (var i = 0; i <= index; i++) {
+                allMarkers[i].marker.addTo(markerGroup);
+            }
+            
+            // Update time display
+            $('#time-display').text(allMarkers[index].time);
+        }
+    </script>
 </body>
 </html>

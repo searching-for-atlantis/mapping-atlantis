@@ -168,7 +168,7 @@
                     properties: {
                         title: 'Thera Eruption',
                         description: 'Proposed by Spyridon Marinatos that the Atlantis story was inspired by the eruption of Thera in ca. 1600 BCE. It is primarily associated with the Akrotiri archaeological site. This view remains popular in TV but not in scholarship.',
-                        pictureURL: 'https://en.wikipedia.org/wiki/Akrotiri_(prehistoric_city)#/media/File:Ancient_Akrotiri.jpeg',
+                        image: 'assets/Ancient_Akrotiri.jpeg',
                         time: '1974',
                         timeValue: 1974
                     }
@@ -317,7 +317,7 @@
                 var coords = feature.geometry.coordinates;
                 var marker = L.marker([coords[1], coords[0]], {icon: customIcon});
                 
-                var content = "<div style='clear: both'></div><div><h4>" + feature.properties.title + "</h4><p>" + feature.properties.time + "</p><p>" + feature.properties.description + "</p></div>";
+                var content = "<div style='clear: both'></div><div><h4>" + feature.properties.title + "</h4><p>" + feature.properties.time + "</p><p>" + feature.properties.description + "</p><img src='" + feature.properties.image + "' alt='" + feature.properties.title + "' style='max-width: 100%; height: auto;'></div>";
                 marker.bindPopup(content, {closeButton: true});
                 
                 allMarkers.push({

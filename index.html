@@ -28,6 +28,7 @@
         margin: 0;
         padding: 0;
     }
+
     #map {
         margin: auto;
         height: 100%;
@@ -101,8 +102,8 @@
             </div>
         </div>
     </nav>
-<header class="py-4" style="background-color: #084844; min-height: 14rem;"> 
-    <div class="container text-center">
+<div class="py-4" style="background-color: #084844; min-height: 14rem;"> 
+<div class="container text-center">
         <img class="img-fluid rounded-circle mb-3" 
              src="assets/atlantis-1.png" 
              alt="Canva generated image of underwater arches" 
@@ -110,8 +111,7 @@
         <h1 class="text-white fs-3 fw-bolder mb-3">Searching for Atlantis: Sites Around the World</h1>
         <p class="text-white-50 mb-0">An interactive map showing the many archaeological sites associated with the lost city of Atlantis.</p>
     </div>
-</header>
-    </header>
+    </div>
     <div id="map">
         <div id="time-slider-container">
             <div id="time-display">Year</div>
@@ -149,9 +149,9 @@
 
             // Initialize map
             map = L.map('map').setView([38.60351519758862, 19.236721544853967], 4);
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { 
                 maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }).addTo(map);
 
             // Create custom icon
